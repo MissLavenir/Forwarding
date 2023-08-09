@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:gravity="center_horizontal"
+    tools:context=".TestForwardActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="短信发送测试"
+        android:layout_marginVertical="30dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:text="将短信发送到："
+        android:textColor="@color/grey_800"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/inputPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_round_rectangle_stroke_grey"
+        android:textSize="14sp"
+        android:hint="请在此处输入手机号"
+        android:textColorHint="@color/grey_500"
+        android:inputType="number"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/inputMessage"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_round_rectangle_stroke_grey"
+        android:textSize="14sp"
+        android:gravity="start"
+        android:hint="请在此处输入短信内容请在此处输入短信内容"
+        android:textColorHint="@color/grey_500"
+        />
+
+    <TextView
+        android:id="@+id/sendSms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="发送短信测试"
+        android:textColor="@color/blue_500"
+        android:background="@drawable/bg_round_rectangle_stroke_blue_500"
+        android:paddingHorizontal="100dp"
+        android:layout_marginTop="30dp"
+        />
+
+
+</LinearLayout>
