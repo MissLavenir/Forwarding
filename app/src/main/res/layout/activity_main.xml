@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
     >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="4dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="16dp"
+        android:text="开启短信转发功能，需要收到去设置中给本APP打开“发送短信”和“接收短信”权限，该功能会将本手机号收到的短信，转发到其他手机号上。短信转发费用跟手机卡相关。"
+        />
+
+    <TextView
+        android:id="@+id/applyPermission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="权限设置"
+        android:textColor="@color/blue_500"
+        android:textStyle="bold"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/messageForwardingLayout"
@@ -16,25 +38,14 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
         android:paddingVertical="4dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         >
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/messageForwardingDec"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="4dp"
-            android:text="开启短信转发功能，需要收到去设置中给本APP打开“发送短信”和“接收短信”权限，该功能会将本手机号收到的短信，转发到其他手机号上。短信转发费用跟手机卡相关。"
-            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/decPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/messageForwardingDec"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="接收手机号："
@@ -80,28 +91,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_horizontal"
+        android:gravity="bottom"
         >
 
-        <TextView
-            android:id="@+id/applyPermission"
+        <CheckBox
+            android:id="@+id/codeMerge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
-            android:text="请求权限"
-            android:textColor="@color/white"
-            android:paddingVertical="6dp"
-            android:paddingHorizontal="20dp"
-            android:background="@drawable/bg_round_rectangle_blue_500"
+            android:checked="true"
+            app:buttonTint="@color/blue_500"
+            android:textColor="@color/black"
+            android:text="开启验证码缩略"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
             />
 
         <TextView
             android:id="@+id/startService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
             android:text="开启前台服务"
             android:textColor="@color/white"
             android:paddingVertical="6dp"

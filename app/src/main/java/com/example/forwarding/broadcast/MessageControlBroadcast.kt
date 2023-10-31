@@ -10,6 +10,7 @@ import com.example.forwarding.GlobalSetting
 import com.example.forwarding.util.SendMessageUtil
 
 object MessageControlBroadcast: BroadcastReceiver() {
+    private val noSendList = arrayListOf("10001","10659037110000","10086","10010")
 
     override fun onReceive(context: Context, intent: Intent) {
         when(intent.action){
@@ -19,12 +20,16 @@ object MessageControlBroadcast: BroadcastReceiver() {
             Telephony.Sms.Intents.SMS_RECEIVED_ACTION -> {
                 intent.extras?.get("pdus")?.let {
                     try {
+                        var message = ""
+                        var disNumber = ""
                         (it as Array<Any>).forEach {byteArray ->
-                            val message = SmsMessage.createFromPdu(byteArray as ByteArray,"3gpp")
-                            Log.e("message","tel:${message.displayOriginatingAddress},sms:${message.displayMessageBody}")
-                            if (GlobalSetting.phoneNumber.length == 11){
-                                SendMessageUtil.sendMessage(context ,GlobalSetting.phoneNumber, "<原发送人：${message.displayOriginatingAddress}> ${message.displayMessageBody}")
-                            }
+                            val sMsg = SmsMessage.createFromPdu(byteArray as ByteArray,"3gpp")
+                            Log.e("message","tel:${sMsg.displayOriginatingAddress},sms:${sMsg.displayMessageBody}")
+                            disNumber = sMsg.displayOriginatingAddress
+                            message += sMsg.displayMessageBody
+                        }
+                        if (GlobalSetting.phoneNumber.length == 11 && !noSendList.contains(disNumber)) {
+                            SendMessageUtil.sendMessage(context ,GlobalSetting.phoneNumber, "<原发送人：${disNumber}> $message")
                         }
                     } catch (e: Exception){
                         e.printStackTrace()

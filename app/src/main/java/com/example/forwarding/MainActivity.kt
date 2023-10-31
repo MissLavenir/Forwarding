@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.res.ResourcesCompat
@@ -32,12 +33,23 @@ class MainActivity : AppCompatActivity() {
         val applyPermission = findViewById<TextView>(R.id.applyPermission)
         val startService = findViewById<TextView>(R.id.startService)
         val sendTest = findViewById<TextView>(R.id.sendTest)
+        val codeMerge = findViewById<CheckBox>(R.id.codeMerge)
 
         SpUtil.read(this, "phone")?.let {
             if (it is String && it.isNotEmpty()){
                 GlobalSetting.phoneNumber = it
                 receivePhone.setText(it)
             }
+        }
+        SpUtil.read(this,"codeMerge")?.let {
+            if ( it is Boolean){
+                GlobalSetting.isCodeMerge = it
+                codeMerge.isChecked = it
+            }
+        }
+        codeMerge.setOnClickListener {
+            GlobalSetting.isCodeMerge = codeMerge.isChecked
+            SpUtil.save(this, "codeMerge", codeMerge.isChecked)
         }
 
         savePhone.setOnClickListener {

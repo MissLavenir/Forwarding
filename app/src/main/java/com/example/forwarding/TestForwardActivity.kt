@@ -32,7 +32,7 @@ class TestForwardActivity : AppCompatActivity() {
                 return@setOnClickListener toast("短信内容不能为空")
             }
 
-            SendMessageUtil.sendMessage(this, inputPhone.text.toString(), inputMessage.text.toString())
+            SendMessageUtil.sendMessage(this, inputPhone.text.toString(), "<原发送人：test> "+inputMessage.text.toString())
 
         }
     }
